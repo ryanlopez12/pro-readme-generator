@@ -1,8 +1,15 @@
 const inquirer = require("inquirer")
 const fs = require('fs');
-const generatePage = require('./utils')
+const generatePage = require('./src/template-readme.js');
+const { writeFile } = require('./utils/generate-readme');
 
 const promptUser = () => {
+    console.log(`
+    =============================
+    Professional Readme Generator
+    =============================
+    `);
+
     return inquirer.prompt([
         {
             type: 'input',
@@ -78,8 +85,47 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'tests',
-            message: 
-        },]
+            message: 'What tests did you run to build this application?',
+            validate: testsInput => {
+                if (testsInput) {
+                    return true;
+                } else {
+                    console.log('You need to enter tests ran or enter "N/A" if none were applied.');
+                    return false;
+                }
+            }
+            type: 'input',
+            name: 'email',
+            message: 'Please provide your email for questions about your application.(Required)',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid email!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Please provide your GitHub username for questions about your application.(Required)',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid GitHub username!');
+                    return false;
+                }
+            }
+        },
+    ])
+    // .then(readmeData => {
+    //     push(readmeData);
+    //     if (readmeData) {
+    //         return promptUser
+        }
+
         
    
     
@@ -87,4 +133,6 @@ const promptUser = () => {
     
     
         
-    ) }
+    
+promptUser()
+.then(prompt)

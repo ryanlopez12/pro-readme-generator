@@ -13,6 +13,6 @@ const writeFile = mainContent => {
         })
         })
     }
-,}
+,)}
 
 module.exports = { writeFile };
