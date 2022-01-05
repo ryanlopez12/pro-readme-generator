@@ -120,10 +120,7 @@ const promptUser = () => {
             }
         },
     ])
-    // .then(readmeData => {
-    //     push(readmeData);
-    //     if (readmeData) {
-    //         return promptUser
+  
         }
 
         
@@ -135,4 +132,12 @@ const promptUser = () => {
         
     
 promptUser()
-.then(prompt)
+.then(promptReadme => {
+return generatePage(promptReadme);
+})
+.then(readmeMD => {
+    return writeFile(readmeMD);
+})
+.catch(err => {
+    console.log(err);
+});
