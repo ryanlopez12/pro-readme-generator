@@ -1,4 +1,4 @@
-# pro-readme-generator
+# Pro-Readme-Generator
 A professional readme generator using Node.js
 
 # User Story
